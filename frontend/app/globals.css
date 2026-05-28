@@ -1,0 +1,299 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   VedaAI Design System — Tailwind v4 @theme
+───────────────────────────────────────────── */
+@theme {
+  /* Brand Colors */
+  --color-veda-orange:        #1E1E1E;
+  --color-veda-orange-light:  #374151;
+  --color-veda-orange-muted:  #F3F4F6;
+
+  /* Backgrounds */
+  --color-veda-bg:            #EBEBEB;
+  --color-veda-bg-alt:        #F0F0F0;
+  --color-veda-sidebar:       #FFFFFF;
+  --color-veda-card:          #FFFFFF;
+  --color-veda-active-nav:    #F3F3F3;
+
+  /* Text Hierarchy */
+  --color-veda-text-primary:   #111111;
+  --color-veda-text-secondary: #6B7280;
+  --color-veda-text-muted:     #9CA3AF;
+  --color-veda-text-label:     #374151;
+
+  /* UI Elements */
+  --color-veda-border:        #E5E7EB;
+  --color-veda-border-input:  #D1D5DB;
+  --color-veda-divider:       #F3F4F6;
+  --color-veda-black-btn:     #1A1A1A;
+
+  /* Difficulty Badges */
+  --color-veda-easy:          #16A34A;
+  --color-veda-easy-bg:       #DCFCE7;
+  --color-veda-moderate:      #D97706;
+  --color-veda-moderate-bg:   #FEF3C7;
+  --color-veda-challenging:   #DC2626;
+  --color-veda-challenging-bg:#FEE2E2;
+
+  /* Shadows */
+  --shadow-veda-card:   0 1px 4px rgba(0,0,0,0.08);
+  --shadow-veda-sidebar:4px 0 24px rgba(0,0,0,0.06);
+  --shadow-veda-popup:  0 8px 24px rgba(0,0,0,0.12);
+  --shadow-figma-sidebar: 0px 32px 48px 0px rgba(0,0,0,0.2), 0px 16px 48px 0px rgba(0,0,0,0.12);
+
+  /* Border Radius */
+  --radius-veda-card:   16px;
+  --radius-veda-btn:    999px;
+  --radius-veda-input:  10px;
+  --radius-veda-badge:  6px;
+
+  /* Font */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-bricolage: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+}
+
+/* ─── Reset & Base ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-veda-bg);
+  color: var(--color-veda-text-primary);
+  font-family: var(--font-sans);
+}
+
+/* ─── Scrollbar Styling ─── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+/* ─── Utility Layer ─── */
+@layer utilities {
+  /* Card shadow */
+  .shadow-veda-card {
+    box-shadow: var(--shadow-veda-card);
+  }
+  .shadow-veda-sidebar {
+    box-shadow: var(--shadow-veda-sidebar);
+  }
+  .shadow-veda-popup {
+    box-shadow: var(--shadow-veda-popup);
+  }
+
+  /* Border radii */
+  .rounded-veda-card  { border-radius: var(--radius-veda-card); }
+  .rounded-veda-btn   { border-radius: var(--radius-veda-btn);  }
+  .rounded-veda-input { border-radius: var(--radius-veda-input);}
+  .rounded-veda-badge { border-radius: var(--radius-veda-badge);}
+
+  /* Create Assignment button — black pill with orange glow border */
+  .btn-create-assignment {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: var(--color-veda-black-btn);
+    color: #FFFFFF;
+    border-radius: var(--radius-veda-btn);
+    font-weight: 600;
+    font-size: 14px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    justify-content: center;
+  }
+  .btn-create-assignment::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: var(--radius-veda-btn);
+    background: linear-gradient(135deg, var(--color-veda-orange), #FF8C42);
+    z-index: -1;
+  }
+  .btn-create-assignment:hover {
+    background-color: #2a2a2a;
+    transform: translateY(-1px);
+  }
+
+  /* Black CTA button (page-level) */
+  .btn-cta-black {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background-color: var(--color-veda-black-btn);
+    color: #FFFFFF;
+    border-radius: var(--radius-veda-btn);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+  }
+  .btn-cta-black:hover {
+    background-color: #2a2a2a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  }
+
+  /* Counter button (± circles) */
+  .btn-counter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    border: 1.5px solid var(--color-veda-border-input);
+    background: white;
+    color: var(--color-veda-text-primary);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+  .btn-counter:hover {
+    border-color: var(--color-veda-text-secondary);
+    background: var(--color-veda-active-nav);
+  }
+
+  /* Assignment card */
+  .assignment-card {
+    background: var(--color-veda-card);
+    border-radius: var(--radius-veda-card);
+    box-shadow: var(--shadow-veda-card);
+    padding: 20px 20px 16px;
+    position: relative;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+  }
+  .assignment-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    transform: translateY(-1px);
+  }
+
+  /* Dashed upload zone */
+  .upload-zone {
+    border: 2px dashed var(--color-veda-border-input);
+    border-radius: var(--radius-veda-input);
+    background: #FAFAFA;
+    padding: 32px 24px;
+    text-align: center;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+  }
+  .upload-zone:hover,
+  .upload-zone.dragging {
+    border-color: var(--color-veda-orange);
+    background: var(--color-veda-orange-muted);
+  }
+
+  /* Nav item */
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 450;
+    color: var(--color-veda-text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    width: 100%;
+    text-align: left;
+  }
+  .nav-item:hover {
+    background-color: var(--color-veda-active-nav);
+    color: var(--color-veda-text-primary);
+  }
+  .nav-item.active {
+    background-color: var(--color-veda-active-nav);
+    color: var(--color-veda-text-primary);
+    font-weight: 600;
+  }
+
+  /* Difficulty badges */
+  .badge-easy {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: var(--radius-veda-badge);
+    background: var(--color-veda-easy-bg);
+    color: var(--color-veda-easy);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .badge-moderate {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: var(--radius-veda-badge);
+    background: var(--color-veda-moderate-bg);
+    color: var(--color-veda-moderate);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .badge-challenging {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: var(--radius-veda-badge);
+    background: var(--color-veda-challenging-bg);
+    color: var(--color-veda-challenging);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* Step progress bar */
+  .step-bar-active {
+    height: 4px;
+    border-radius: 999px;
+    background: var(--color-veda-black-btn);
+    flex: 1;
+    transition: background 0.3s ease;
+  }
+  .step-bar-inactive {
+    height: 4px;
+    border-radius: 999px;
+    background: var(--color-veda-border);
+    flex: 1;
+  }
+
+  /* Smooth fade-in */
+  .animate-fade-in {
+    animation: fadeIn 0.25s ease forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
