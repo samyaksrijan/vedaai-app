@@ -1,9 +1,11 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ─────────────────────────────────────────────
-   VedaAI Design System — Tailwind v4 @theme
+   VedaAI Design System — CSS Custom Properties
 ───────────────────────────────────────────── */
-@theme {
+:root {
   /* Brand Colors */
   --color-veda-orange:        #1E1E1E;
   --color-veda-orange-light:  #374151;
